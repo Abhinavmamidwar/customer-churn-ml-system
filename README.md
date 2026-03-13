@@ -1,281 +1,243 @@
-# Customer Churn Prediction System
+# Customer Churn Prediction ML System
 
-An end-to-end **Machine Learning system** that predicts customer churn for a telecom company and provides actionable business insights through an interactive dashboard.
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-XGBoost-orange)
+![Framework](https://img.shields.io/badge/API-FastAPI-green)
+![Dashboard](https://img.shields.io/badge/Dashboard-Streamlit-red)
+![Deployment](https://img.shields.io/badge/Deployment-Render%20%7C%20Streamlit%20Cloud-purple)
 
-This project demonstrates a **production-style ML workflow**, including data preprocessing, feature engineering, model training, API deployment, and an analytics dashboard.
+An **end-to-end Machine Learning system** that predicts telecom customer churn and provides business insights through an interactive dashboard.
 
----
-
-## Project Overview
-
-Customer churn prediction helps businesses identify customers who are likely to stop using their services. Early identification enables companies to implement **retention strategies** and reduce revenue loss.
-
-This system:
-
-* Trains multiple machine learning models
-* Handles class imbalance using SMOTE
-* Deploys the best model using FastAPI
-* Provides a Streamlit dashboard for prediction and customer risk analysis
+This project demonstrates a **complete ML pipeline from data preprocessing to production deployment**.
 
 ---
 
-## Features
+# Live Demo
 
-* End-to-end ML pipeline
-* Feature engineering and preprocessing
-* Class imbalance handling using SMOTE
-* Model comparison (Logistic Regression, Random Forest, XGBoost)
-* Hyperparameter tuning using GridSearchCV
-* ROC-AUC evaluation and confusion matrix
-* Feature importance visualization
-* Customer churn risk segmentation
-* REST API using FastAPI
-* Interactive analytics dashboard using Streamlit
+**Streamlit Dashboard**
+
+https://customer-churn-ml-system.streamlit.app/
+
+**FastAPI Prediction API**
+
+https://customer-churn-ml-system.onrender.com/docs
 
 ---
 
-## Tech Stack
+# Project Overview
 
-**Programming Language**
+Customer churn is a critical problem for telecom companies. Retaining existing customers is significantly cheaper than acquiring new ones.
 
-* Python
-
-**Machine Learning**
-
-* Scikit-learn
-* XGBoost
-* Imbalanced-learn (SMOTE)
-
-**Data Processing**
-
-* Pandas
-* NumPy
-
-**Visualization**
-
-* Matplotlib
-* Seaborn
-
-**Deployment**
-
-* FastAPI
-* Streamlit
-* Docker (optional)
+This project builds a **machine learning system that predicts the probability of a customer leaving a telecom service**, enabling companies to take proactive retention actions.
 
 ---
 
-## Project Architecture
+# System Architecture
 
-```
-customer-churn-ml-system
-│
-├── data
-│   └── telco_churn.csv
-│
-├── models
-│   ├── churn_model.pkl
-│   ├── scaler.pkl
-│   ├── feature_importance.csv
-│   └── features.json
-│
-├── src
-│   └── train_model.py
-│
-├── api
-│   └── main.py
-│
-├── app
-│   └── streamlit_app.py
-│
-├── requirements.txt
-└── README.md
-```
+User Input
+⬇
+Streamlit Dashboard
+⬇
+FastAPI Prediction API
+⬇
+Trained ML Model (XGBoost)
+⬇
+Churn Risk Prediction
 
 ---
 
-## Machine Learning Workflow
-
-### 1. Data Preprocessing
-
-* Removed unnecessary columns
-* Handled missing values
-* Converted data types
-
-### 2. Feature Engineering
-
-Created additional features such as:
-
-* Average charges per month
-* Tenure group segmentation
-
-### 3. Handling Class Imbalance
-
-Applied **SMOTE (Synthetic Minority Oversampling Technique)** to balance churn classes.
-
-### 4. Model Training
-
-The following models were trained:
-
-* Logistic Regression
-* Random Forest (with GridSearch tuning)
-* XGBoost
-
-### 5. Model Evaluation
-
-Evaluation metrics used:
-
-* Accuracy
-* ROC-AUC
-* Confusion Matrix
-* ROC Curve
-
-Best model performance:
-
-```
-ROC-AUC: ~0.83
-Accuracy: ~0.76
-```
-
----
-
-## Dashboard Features
-
-The Streamlit dashboard includes:
-
-### Business KPIs
-
-* Total customers
-* Average monthly charges
-* Average tenure
+# Features
 
 ### Churn Prediction
 
-Predict churn probability for a new customer.
+Predicts the probability that a telecom customer will churn.
 
-### Feature Importance
+### Business KPI Dashboard
 
-Shows the most important factors contributing to churn.
+Displays key metrics such as:
+
+* Total Customers
+* Average Monthly Charges
+* Average Customer Tenure
+
+### Churn Risk Classification
+
+Customers are categorized into:
+
+* Low Risk
+* Medium Risk
+* High Risk
+
+### Feature Importance Analysis
+
+Visualizes the **top features responsible for customer churn**.
 
 ### High-Risk Customer Segmentation
 
-Identifies customers with a high probability of churn.
+Identifies customers with **high churn probability**, helping businesses focus retention efforts.
 
 ---
 
-## Running the Project
+# Machine Learning Pipeline
 
-### 1. Clone Repository
+## Dataset
+
+Telco Customer Churn Dataset
+
+Key features include:
+
+* Tenure
+* Monthly Charges
+* Total Charges
+* Contract Type
+* Internet Service
+* Payment Method
+* Customer Demographics
+
+---
+
+## Feature Engineering
+
+Created additional features:
+
+* Average Charges per Month
+* Tenure Groups
+
+Handled missing values and encoded categorical variables.
+
+---
+
+## Handling Class Imbalance
+
+Used **SMOTE (Synthetic Minority Oversampling Technique)** to balance churn vs non-churn customers.
+
+---
+
+## Model Training
+
+Models evaluated:
+
+* Logistic Regression
+* Random Forest
+* XGBoost
+
+Final selected model:
+
+**XGBoost Classifier**
+
+Performance:
+
+Accuracy ≈ 76%
+ROC-AUC ≈ 0.83
+
+---
+
+# Tech Stack
+
+Python
+Pandas
+NumPy
+Scikit-Learn
+XGBoost
+SMOTE
+FastAPI
+Streamlit
+Matplotlib
+Seaborn
+Docker (Local Development)
+Render (API Deployment)
+Streamlit Cloud (Dashboard Deployment)
+
+---
+
+# Project Structure
 
 ```
-git clone https://github.com/yourusername/customer-churn-ml-system.git
-cd customer-churn-ml-system
+customer-churn-ml-system
+
+data/
+    telco_churn.csv
+
+models/
+    churn_model.pkl
+    scaler.pkl
+    features.json
+    feature_importance.csv
+
+src/
+    train_model.py
+    api.py
+    feature_importance.py
+
+app.py
+requirements.txt
+docker-compose.yml
+README.md
 ```
 
-### 2. Install Dependencies
+---
+
+# Run Locally
+
+Clone the repository
+
+```
+git clone https://github.com/Abhinavmamidwar/customer-churn-ml-system.git
+```
+
+Install dependencies
 
 ```
 pip install -r requirements.txt
 ```
 
-### 3. Train the Model
+Train the model
 
 ```
 python src/train_model.py
 ```
 
-### 4. Start FastAPI Server
+Run the API
 
 ```
-uvicorn api.main:app --reload
+uvicorn src.api:app --reload
 ```
 
-API will run at:
+Run the dashboard
 
 ```
-http://127.0.0.1:8000
-```
-
-Interactive API docs:
-
-```
-http://127.0.0.1:8000/docs
-```
-
-### 5. Run Dashboard
-
-```
-streamlit run app/streamlit_app.py
+streamlit run app.py
 ```
 
 ---
 
-## Example API Request
+# Business Value
 
-```
-POST /predict
-```
+Customer churn leads to **billions in revenue loss for telecom companies** every year.
 
-Request body:
+This system helps businesses:
 
-```
-{
- "tenure": 12,
- "MonthlyCharges": 70,
- "TotalCharges": 2000
-}
-```
-
-Response:
-
-```
-{
- "prediction": 0,
- "probability": 0.23
-}
-```
+* Identify high-risk customers
+* Understand churn drivers
+* Improve customer retention strategies
+* Reduce revenue loss
 
 ---
 
-## Dataset
+# Future Improvements
 
-Telco Customer Churn Dataset.
-
-Features include:
-
-* Tenure
-* Monthly charges
-* Contract type
-* Payment method
-* Internet service
-* Customer demographics
+* Customer retention recommendation engine
+* Real-time churn monitoring
+* Automated model retraining pipeline
+* Cloud-based ML workflow
 
 ---
 
-## Future Improvements
+# Author
 
-Possible enhancements:
+Abhinav Mamidwar
 
-* Batch churn prediction
-* Model monitoring
-* CI/CD pipeline
-* Cloud deployment (AWS / GCP)
-* Automated retraining pipeline
+Aspiring Data Scientist / Machine Learning Engineer
 
----
-
-## Author
-
-**Abhinav B Mamidwar**
-
-Aspiring Data Scientist with interests in:
-
-* Machine Learning
-* Deep Learning
-* NLP
-* Data Analytics
-
----
-
-## License
-
-This project is for educational and portfolio purposes.
+GitHub
+https://github.com/Abhinavmamidwar
