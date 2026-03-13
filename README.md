@@ -127,7 +127,7 @@ Final selected model:
 
 Performance:
 
-Accuracy ≈ 76%
+Accuracy ≈ 79%
 ROC-AUC ≈ 0.83
 
 ---
