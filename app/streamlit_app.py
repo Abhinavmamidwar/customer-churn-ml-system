@@ -17,6 +17,12 @@ st.set_page_config(
 st.title("Customer Churn Prediction Dashboard")
 
 # ---------------------------------------------------
+# API URL (RENDER)
+# ---------------------------------------------------
+
+API_URL = "https://customer-churn-ml-system.onrender.com/predict"
+
+# ---------------------------------------------------
 # LOAD MODEL FILES
 # ---------------------------------------------------
 
@@ -44,7 +50,7 @@ df["TenureGroup"] = pd.cut(
 )
 
 # ---------------------------------------------------
-# BUSINESS KPI SECTION
+# BUSINESS KPIs
 # ---------------------------------------------------
 
 st.header("Business KPIs")
@@ -83,26 +89,28 @@ if st.button("Predict Churn Risk"):
 
     try:
 
-        response = requests.post(
-            "http://127.0.0.1:8000/predict",
-            json=input_data
-        )
+        response = requests.post(API_URL, json=input_data)
 
-        result = response.json()
+        if response.status_code == 200:
 
-        prob = result["probability"]
+            result = response.json()
 
-        st.metric("Churn Probability", round(prob,2))
+            prob = result["probability"]
 
-        if prob > 0.6:
-            st.error("High Risk Customer")
-        elif prob > 0.4:
-            st.warning("Medium Risk")
+            st.metric("Churn Probability", round(prob,2))
+
+            if prob > 0.6:
+                st.error("High Risk Customer")
+            elif prob > 0.4:
+                st.warning("Medium Risk")
+            else:
+                st.success("Low Risk Customer")
+
         else:
-            st.success("Low Risk Customer")
+            st.error("API error: " + str(response.status_code))
 
-    except:
-        st.error("FastAPI server not running")
+    except Exception as e:
+        st.error(f"API connection failed: {e}")
 
 st.divider()
 
