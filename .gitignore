@@ -7,3 +7,5 @@ __pycache__/
 venv/
 myenv/
 .ipynb_checkpoints/
+data/*
+!data/telco_churn.csv
